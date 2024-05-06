@@ -117,7 +117,7 @@ Finished
 ```
 
 
-We see there is robots.txt but when we go to the /robots.txt there is a funny message:
+We see there is robots.txt but when we go to the /robots.txt and there is a funny message:
 
 
 
@@ -125,7 +125,7 @@ We see there is robots.txt but when we go to the /robots.txt there is a funny me
 
 
 
-after that we try to look at the /secret directory there is only one cute turtle:
+after that we try to look at the /secret directory but there is only one cute turtle:
 
 
 ![](pics/0day3.png)
