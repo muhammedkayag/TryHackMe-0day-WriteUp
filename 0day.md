@@ -119,10 +119,13 @@ Finished
 
 We see there is robots.txt but when we go to the there we see a funny message:
 
-You really thought it'd be this easy?
+
+![](pics/0day2.png)
+
+
 
 after that we try to look at the /secret directory there is another funny message:
 
 
-![](pics/0day2.png)
+![](pics/0day3.png)
 
