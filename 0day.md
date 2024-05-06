@@ -51,7 +51,7 @@ Nmap done: 1 IP address (1 host up) scanned in 2.05 seconds
 ```
 ```
 ┌─[✗]─[root@parrot]─[/home/parrot]
-└──╼ #nmap -p- -sC -sV 10.10.105.222       
+└──╼ #nmap -p 22,80 -sC -sV 10.10.105.222       
 Starting Nmap 7.80 ( https://nmap.org ) at 2023-10-22 07:47 CEST
 Nmap scan report for 10.10.105.222
 Host is up (0.047s latency).
