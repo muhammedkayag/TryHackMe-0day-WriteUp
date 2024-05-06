@@ -1,11 +1,9 @@
-0Day - TryHackMe.com
-
 [Link to room on TryHackMe.com](https://tryhackme.com/room/0day)
 
 ![](0day11.png)
 
 
-First step as always: enumerating ports with rustcan and nmap:
+First step : enumerating ports with rustcan and nmap:
 
 ```
 ┌─[✗]─[root@parrot]─[/home/parrot]
@@ -27,7 +25,7 @@ RustScan: Making sure 'closed' isn't just a state of mind.
 Open 10.10.105.222:22
 Open 10.10.105.222:80
 [~] Starting Script(s)
-[~] Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-05-06 22:02 +03
+[~] Starting Nmap 7.94SVN ( https://nmap.org ) at 2023-05-06 22:02 +03
 Initiating Ping Scan at 22:02
 Scanning 10.10.105.222 [4 ports]
 Completed Ping Scan at 22:02, 0.45s elapsed (1 total hosts)
@@ -41,7 +39,7 @@ Discovered open port 80/tcp on 10.10.105.222
 Completed SYN Stealth Scan at 22:02, 0.48s elapsed (2 total ports)
 Nmap scan report for 10.10.105.222
 Host is up, received echo-reply ttl 60 (0.42s latency).
-Scanned at 2024-05-06 22:02:26 +03 for 1s
+Scanned at 2023-05-06 22:02:26 +03 for 1s
 
 PORT   STATE SERVICE REASON
 22/tcp open  ssh     syn-ack ttl 60
@@ -54,7 +52,7 @@ Nmap done: 1 IP address (1 host up) scanned in 2.05 seconds
 ```
 ┌─[✗]─[root@parrot]─[/home/parrot]
 └──╼ #nmap -p- -sC -sV 10.10.105.222       
-Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-22 07:47 CEST
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-10-22 07:47 CEST
 Nmap scan report for 10.10.105.222
 Host is up (0.047s latency).
 Not shown: 65533 closed ports
@@ -73,3 +71,39 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 29.16 seconds
 ```
+after this results we see there is only two ports are open. İf we search exploit for this versions of services we cant find something useful. so we continue to enumaration for port 80 with gobuster:
+
+```
+┌─[root@parrot]─[/home/parrot]
+└──╼ #gobuster dir -u http://10.10.105.222/ -w common.txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.105.222
+[+] Threads:        10
+[+] Wordlist:       common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2023/10/21 19:55:44 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/admin (Status: 301)
+/backup (Status: 301)
+/cgi-bin/ (Status: 403)
+/cgi-bin (Status: 301)
+/css (Status: 301)
+/img (Status: 301)
+/index.html (Status: 200)
+/js (Status: 301)
+/robots.txt (Status: 200)
+/secret (Status: 301)
+/server-status (Status: 403)
+/uploads (Status: 301)
+```
+
+
