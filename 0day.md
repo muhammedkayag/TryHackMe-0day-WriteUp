@@ -71,39 +71,58 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 29.16 seconds
 ```
-after this results we see there is only two ports are open. İf we search exploit for this versions of services we cant find something useful. so we continue to enumaration for port 80 with gobuster:
+
+
+After this results we see there is only two ports are open. İf we search exploit for this versions of services we cant find something useful. so we continue to enumaration for port 80 with gobuster:
+
+
 
 ```
 ┌─[root@parrot]─[/home/parrot]
 └──╼ #gobuster dir -u http://10.10.105.222/ -w common.txt
 ===============================================================
-Gobuster v3.0.1
-by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
-[+] Url:            http://10.10.105.222
-[+] Threads:        10
-[+] Wordlist:       common.txt
-[+] Status codes:   200,204,301,302,307,401,403
-[+] User Agent:     gobuster/3.0.1
-[+] Timeout:        10s
+[+] Url:                     http://10.10.105.222/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
 ===============================================================
-2023/10/21 19:55:44 Starting gobuster
+Starting gobuster in directory enumeration mode
 ===============================================================
-/.hta (Status: 403)
-/.htaccess (Status: 403)
-/.htpasswd (Status: 403)
-/admin (Status: 301)
-/backup (Status: 301)
-/cgi-bin/ (Status: 403)
-/cgi-bin (Status: 301)
-/css (Status: 301)
-/img (Status: 301)
-/index.html (Status: 200)
-/js (Status: 301)
-/robots.txt (Status: 200)
-/secret (Status: 301)
-/server-status (Status: 403)
-/uploads (Status: 301)
+/.hta                 (Status: 403) [Size: 284]
+/.htaccess            (Status: 403) [Size: 289]
+/.htpasswd            (Status: 403) [Size: 289]
+/admin                (Status: 301) [Size: 313] [--> http://10.10.105.222/admin/]
+/backup               (Status: 301) [Size: 314] [--> http://10.10.105.222/backup/]
+/cgi-bin              (Status: 301) [Size: 315] [--> http://10.10.105.222/cgi-bin/]
+/cgi-bin/             (Status: 403) [Size: 288]
+/css                  (Status: 301) [Size: 311] [--> http://10.10.105.222/css/]
+/img                  (Status: 301) [Size: 311] [--> http://10.10.105.222/img/]
+/index.html           (Status: 200) [Size: 3025]
+/js                   (Status: 301) [Size: 310] [--> http://10.10.105.222/js/]
+/robots.txt           (Status: 200) [Size: 38]
+/secret               (Status: 301) [Size: 314] [--> http://10.10.105.222/secret/]
+/server-status        (Status: 403) [Size: 293]
+/uploads              (Status: 301) [Size: 315] [--> http://10.10.105.222/uploads/]
+Progress: 4614 / 4615 (99.98%)
+===============================================================
+Finished
+===============================================================
+
 ```
 
+
+We see there is robots.txt but when we go to the there we see a funny message:
+
+You really thought it'd be this easy?
+
+after that we try to look at the /secret directory there is another funny message:
+
+
+![](pics/0day2.png)
 
