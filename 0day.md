@@ -184,7 +184,7 @@ LPORT => 1234
 
 
 
-And we have a meterpreter shell for get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:
+And we have a meterpreter shell. For to get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:
 
 
 
@@ -200,7 +200,7 @@ www-data@ubuntu:/usr/lib/cgi-bin$
 
 
 
-So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get user first flag:
+So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get our first flag:
 
 
 
@@ -249,7 +249,7 @@ sudo -l
 
 
 
-When we use this command to see what version of linux we have wee see it is a very old one:
+When we use this command to see what version of linux we have wee se it is a very old one:
 
 
 
@@ -264,12 +264,14 @@ Linux ubuntu 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_6
 When we search exploit for this version we found a useful exploit:
 
 
+[Linux Kernel 3.13.0 < 3.19 (Ubuntu 12.04/14.04/14.10/15.04) - 'overlayfs' Local Privilege Escalation](https://www.exploit-db.com/exploits/37292)
+
 
 ![](pics/0day4.png)
 
 
 
-So all we should do send this exploit to the target and run it. For sending we can use python with this command:
+So all we should do send this exploit to the target and run it. For sending we can use python with this command in our attacker box:
 
 
 
@@ -279,7 +281,7 @@ python3 -m http.server 7000
 
 
  
-Then we go to the /dev/shm directory because it is writable for everyone and we use this command to get our exploit:
+Then we go to the /dev/shm directory in the target because it is writable for everyone and we use this command to get our exploit:
 
 
 
@@ -329,7 +331,7 @@ THM{g00d_j0b_0day_is_Pleased}
 
 
 
-And thats it, 0day pwned I hope you enjoy this write up . Thanks for reading!
+And thats it, 0day pwned. I hope you enjoy this write up . Thanks for reading!
  
 
 
