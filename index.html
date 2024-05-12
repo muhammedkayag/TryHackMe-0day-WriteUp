@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TryHackMe-0day-WriteUp</title>
+    <title>My Website</title>
     <style>
-        body {
-            background-color: #333333; /* Antrasit rengi (koyu gri) */
-            color: white; /* Metin rengini beyaz olarak ayarlar */
-            font-family: Arial, sans-serif; /* Metin fontunu ayarlar */
+        pre {
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            padding: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <pre>
+        <code>
+            Bu şekilde yazılmış bir kod bloğu
+        </code>
+        <button class="copy-btn">Kopyala</button>
+    </pre>
 
  <p><a href="https://tryhackme.com/room/0day">Link to room on TryHackMe.com</a></p>
 <p>First step : enumerating ports with rustcan and nmap:</p>
@@ -229,6 +243,20 @@ root<span class="hljs-variable">@ubuntu</span><span class="hljs-symbol">:/run/sh
 cat root.txt
 THM{g00d_j0b_0day_is_Pleased}
 </code></pre><p>And thats it, 0day pwned. I hope you enjoy this write up . Thanks for reading!</p>
+
+<script>
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.parentElement.querySelector('code');
+                const textArea = document.createElement('textarea');
+                textArea.value = codeBlock.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            });
+        });
+    </script>
 </body>
 </html>
 
